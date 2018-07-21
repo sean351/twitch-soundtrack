@@ -1,0 +1,21 @@
+{
+  "spotify": {
+    "client": {
+      "id": "e3965bf1802d4166b4c6b97919039293"
+    },
+    "redirect_uri": "http://localhost:8081/login",
+    "scopes": [
+      "user-read-currently-playing",
+      "user-read-playback-state"
+    ],
+    "state": "bd9e7598-22ca-45c6-8c0a-8fb5c8d8f529"
+  },
+  "auth": {
+    "port": 8081,
+    "tokenFilePath": "./config/local.json"
+  },
+  "obs": {
+    "trackFilePath": "/tmp/spotify-currently-playing.txt",
+    "pollForChanges": 10000
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "spotify": {
+    "client": {
+      "secret": "SPOTIFY_API_SECRET"
+    }
+  }
+}
