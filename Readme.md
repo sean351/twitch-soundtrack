@@ -9,7 +9,7 @@ Connects to the Spotify API to retrive the current track and write to disk. The 
 
 ## Usage
 
-Define an environment variable called `SPOTIFY_API_SECRET` and set it to your Spotify app's secret (get this from the Spotify developer dashboard).
+Define environment variables called `SPOTIFY_API_ID` & `SPOTIFY_API_SECRET` and set it to your Spotify app's client id / secret (get this from the [Spotify developer dashboard](https://developer.spotify.com/dashboard)).
 
 Make sure all of the dependencies are installed using `yarn`.
 
