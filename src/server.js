@@ -46,8 +46,15 @@ const saveCurrentlyPlaying = (track) => {
   })
 }
 
-setInterval(async () => {
+const loop = setInterval(async () => {
   await onUpdateCurrentlyPlaying()
 }, config.get('obs.pollForChanges'))
 
 onUpdateCurrentlyPlaying()
+
+const shutdown = () => {
+  clearInterval(loop)
+  saveCurrentlyPlaying('')
+}
+
+['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException'].forEach(type => process.on(type, shutdown))
