@@ -23,9 +23,11 @@ app.get('/login', async (req, res) => {
 
   try {
     const tokens = await spotify.authorizationCodeGrant(code)
-    fs.writeFile(path.resolve(config.get('auth.tokenFilePath')), JSON.stringify(tokens.body), (err) => {
+    const output = {refresh_token: tokens.body.refresh_token}
+
+    fs.writeFile(path.resolve(config.get('auth.tokenFilePath')), JSON.stringify(output), (err) => {
       if (err) throw new Error(err.message)
-      res.json({ ok: true, ...tokens.body })
+      res.json({ ok: true, ...output })
     })
   } catch (err) {
     res.json({ ok: false, err: err.message })

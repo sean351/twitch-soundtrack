@@ -7,8 +7,18 @@ const spotify = new SpotifyWebApi({
   redirectUri: config.get('spotify.redirect_uri')
 })
 
-spotify.setAccessToken(config.get('access_token'))
-spotify.setRefreshToken(config.get('refresh_token'))
+const onAuthenticate = async () => {
+  try {
+    spotify.setRefreshToken(config.get('refresh_token'))
+
+    const tokens = await spotify.refreshAccessToken()
+    spotify.setAccessToken(tokens.body.access_token)
+
+    onAuthenticated()
+  } catch (err) {
+    console.error('onAuthenticate error', err)
+  }
+}
 
 let previousTrack
 
@@ -46,15 +56,18 @@ const saveCurrentlyPlaying = (track) => {
   })
 }
 
-const loop = setInterval(async () => {
-  await onUpdateCurrentlyPlaying()
-}, config.get('obs.pollForChanges'))
+const onAuthenticated = () => {
+  const loop = setInterval(async () => {
+    await onUpdateCurrentlyPlaying()
+  }, config.get('obs.pollForChanges'))
 
-onUpdateCurrentlyPlaying()
+  const shutdown = () => {
+    clearInterval(loop)
+    saveCurrentlyPlaying('')
+  }
 
-const shutdown = () => {
-  clearInterval(loop)
-  saveCurrentlyPlaying('')
+  ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException'].forEach(type => process.on(type, shutdown))
+  onUpdateCurrentlyPlaying()
 }
 
-['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException'].forEach(type => process.on(type, shutdown))
+onAuthenticate()
