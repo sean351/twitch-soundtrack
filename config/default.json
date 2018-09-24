@@ -15,7 +15,7 @@
     "tokenFilePath": "./config/local.json"
   },
   "obs": {
-    "trackFilePath": "/tmp/spotify-currently-playing.txt",
+    "trackFilePath": "/Users/mike.holloway/Sites/home/spotify/spotify-currently-playing.txt",
     "pollForChanges": 10000
   }
 }

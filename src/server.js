@@ -38,7 +38,7 @@ const onUpdateCurrentlyPlaying = async () => {
       name
     } = state.body.item
     const artists = album.artists[0].name
-    const track = `Listening to: ${name} - ${artists}`
+    const track = `${name} - ${artists}`
 
     if (track !== previousTrack) {
       return saveCurrentlyPlaying(track)
