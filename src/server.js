@@ -7,13 +7,16 @@ const spotify = new SpotifyWebApi({
   redirectUri: config.get('spotify.redirect_uri')
 })
 
+const refreshToken = async () => {
+  const tokens = await spotify.refreshAccessToken()
+  spotify.setAccessToken(tokens.body.access_token)
+}
+
 const onAuthenticate = async () => {
   try {
     spotify.setRefreshToken(config.get('refresh_token'))
 
-    const tokens = await spotify.refreshAccessToken()
-    spotify.setAccessToken(tokens.body.access_token)
-
+    await refreshToken()
     onAuthenticated()
   } catch (err) {
     console.error('onAuthenticate error', err)
@@ -24,7 +27,8 @@ let previousTrack
 
 const onUpdateCurrentlyPlaying = async () => {
   try {
-    await spotify.refreshAccessToken()
+    await refreshToken()
+
     const state = await spotify.getMyCurrentPlaybackState()
     const isPlaying = Boolean(state.body.is_playing)
 
