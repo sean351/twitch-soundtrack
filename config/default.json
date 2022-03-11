@@ -1,21 +1,22 @@
 {
-  "spotify": {
+  "twitch": {
     "client": {
-      "id": "e3965bf1802d4166b4c6b97919039293"
+      "id": "set in environment variables",
+      "secret": "set in environment variables"
     },
-    "redirect_uri": "http://localhost:8081/login",
-    "scopes": [
-      "user-read-currently-playing",
-      "user-read-playback-state"
-    ],
+    "redirect_uri": {
+      "authenticated": "http://localhost:8081/authenticated",
+      "handshake": "http://localhost:8081/handshake"
+    },
+    "scopes": [],
     "state": "bd9e7598-22ca-45c6-8c0a-8fb5c8d8f529"
   },
   "auth": {
     "port": 8081,
-    "tokenFilePath": "./config/local.json"
+    "tokenFilePath": "./config/tokens.json"
   },
   "obs": {
-    "trackFilePath": "/Users/mike.holloway/Sites/home/spotify/spotify-currently-playing.txt",
+    "trackFilePath": "./twitch-currently-playing.txt",
     "pollForChanges": 10000
   }
 }

@@ -1,8 +1,8 @@
 {
-  "spotify": {
+  "twitch": {
     "client": {
-      "id": "SPOTIFY_API_ID",
-      "secret": "SPOTIFY_API_SECRET"
+      "id": "TWITCH_API_ID",
+      "secret": "TWITCH_API_SECRET"
     }
   }
 }
