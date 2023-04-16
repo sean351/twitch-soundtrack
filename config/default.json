@@ -5,8 +5,8 @@
       "secret": "set in environment variables"
     },
     "redirect_uri": {
-      "authenticated": "http://localhost:8081/authenticated",
-      "handshake": "http://localhost:8081/handshake"
+      "authenticated": "http://localhost:3005/authenticated",
+      "handshake": "http://localhost:3005/handshake"
     },
     "scopes": [],
     "state": "bd9e7598-22ca-45c6-8c0a-8fb5c8d8f529"
